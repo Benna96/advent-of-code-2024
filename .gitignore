@@ -3,3 +3,6 @@
 [Oo]bj/
 
 # Files under .idea are handled by Rider-generated .gitignore
+
+# User specific
+*.user
