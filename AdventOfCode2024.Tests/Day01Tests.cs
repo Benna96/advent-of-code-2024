@@ -1,16 +1,33 @@
+using FluentAssertions.Execution;
+
 namespace AdventOfCode2024.Tests;
 
 public class Day01Tests
 {
     private static Day01 Day => new();
 
-    private static readonly string DemoInput = "TEMP";
+    private static readonly string DemoInput = """
+                                               3   4
+                                               4   3
+                                               2   5
+                                               1   3
+                                               3   9
+                                               3   3
+                                               """;
+
+    private static readonly IReadOnlyList<int> DemoLeftIds = [3, 4, 2, 1, 3, 3];
+    private static readonly IReadOnlyList<int> DemoRightIds = [4, 3, 5, 3, 9, 3];
 
     [Fact]
-    public void InputParsingIsWip()
+    public void InputIsParsedCorrectly()
     {
-        var inputParser = () => Day01.ParseInput(DemoInput);
-        inputParser.Should().Throw<NotImplementedException>();
+        var parsed = Day01.ParseInput(DemoInput);
+
+        using (new AssertionScope())
+        {
+            parsed.leftIds.Should().BeEquivalentTo(DemoLeftIds, "values should match input's first column");
+            parsed.rightIds.Should().BeEquivalentTo(DemoRightIds, "values should match input's second column");
+        }
     }
     
     [Fact]

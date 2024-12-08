@@ -5,16 +5,28 @@ namespace AdventOfCode2024;
 /// </summary>
 public sealed class Day01 : BaseDay
 {
-    private readonly string _inputDummy;
+    private readonly IReadOnlyList<int> _leftIds;
+    private readonly IReadOnlyList<int> _rightIds;
     
     public Day01()
     {
-        _inputDummy = ParseInput(File.ReadAllText(InputFilePath));
+        (_leftIds, _rightIds) = ParseInput(File.ReadAllText(InputFilePath));
     }
     
-    public static string ParseInput(string input)
+    public static (IReadOnlyList<int> leftIds, IReadOnlyList<int> rightIds) ParseInput(string input)
     {
-        throw new NotImplementedException();
+        List<int> leftIds = [];
+        List<int> rightIds = [];
+        
+        using var reader = new StringReader(input);
+        while (reader.ReadLine() is { } line)
+        {
+            var lineIds = line.Split("   ");
+            leftIds.Add(int.Parse(lineIds[0]));
+            rightIds.Add(int.Parse(lineIds[1]));
+        }
+        
+        return (leftIds.AsReadOnly(), rightIds.AsReadOnly());
     }
 
     public override ValueTask<string> Solve_1()
