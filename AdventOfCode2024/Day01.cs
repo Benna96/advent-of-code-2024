@@ -34,7 +34,13 @@ public sealed class Day01 : BaseDay
 
     public override ValueTask<string> Solve_1()
     {
-        throw new NotImplementedException();
+        var leftSorted = _leftIds.Order();
+        var rightSorted = _rightIds.Order();
+
+        var pairs = leftSorted.Zip(rightSorted, (l, r) => new { l, r });
+        var distanceSum = pairs.Sum(pair => Math.Abs(pair.l - pair.r));
+        
+        return new ValueTask<string>(distanceSum.ToString());
     }
 
     public override ValueTask<string> Solve_2()

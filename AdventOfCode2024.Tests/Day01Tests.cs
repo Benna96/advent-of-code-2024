@@ -18,6 +18,8 @@ public class Day01Tests
     private static readonly IReadOnlyList<int> ExpectedLeftIds = [3, 4, 2, 1, 3, 3];
     private static readonly IReadOnlyList<int> ExpectedRightIds = [4, 3, 5, 3, 9, 3];
 
+    private static readonly int ExpectedPart1Solution = 11;
+
     [Fact]
     public void InputIsParsedCorrectly()
     {
@@ -31,10 +33,10 @@ public class Day01Tests
     }
     
     [Fact]
-    public async Task Part1SolverIsWip()
+    public async Task Part1IsSolvedCorrectly()
     {
-        var solver1 = async () => await GivenDay.Solve_1();
-        await solver1.Should().ThrowAsync<NotImplementedException>();
+        var solution = await GivenDay.Solve_1();
+        solution.Should().Be(ExpectedPart1Solution.ToString());
     }
 
     [Fact]
