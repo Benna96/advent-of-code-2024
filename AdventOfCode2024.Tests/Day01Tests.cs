@@ -4,7 +4,7 @@ namespace AdventOfCode2024.Tests;
 
 public class Day01Tests
 {
-    private static Day01 Day => new();
+    private static Day01 Day => new(DemoInput);
 
     private static readonly string DemoInput = """
                                                3   4

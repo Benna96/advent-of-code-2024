@@ -8,9 +8,12 @@ public sealed class Day01 : BaseDay
     private readonly IReadOnlyList<int> _leftIds;
     private readonly IReadOnlyList<int> _rightIds;
     
-    public Day01()
+    public Day01() : this(null) { }
+
+    public Day01(string? customInput = null)
     {
-        (_leftIds, _rightIds) = ParseInput(File.ReadAllText(InputFilePath));
+        var input = customInput ?? File.ReadAllText(InputFilePath);
+        (_leftIds, _rightIds) = ParseInput(input);
     }
     
     public static (IReadOnlyList<int> leftIds, IReadOnlyList<int> rightIds) ParseInput(string input)
