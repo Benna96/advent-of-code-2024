@@ -45,6 +45,16 @@ public sealed class Day01 : BaseDay
 
     public override ValueTask<string> Solve_2()
     {
-        throw new NotImplementedException();
+        Dictionary<int, int> rightIdCounts = [];
+        foreach (var id in _rightIds)
+        {
+            var idCount = rightIdCounts.GetValueOrDefault(id, 0);
+            ++idCount;
+            rightIdCounts[id] = idCount;
+        }
+        
+        var similarityScore = _leftIds.Sum(id => id * rightIdCounts.GetValueOrDefault(id, 0));
+        
+        return new ValueTask<string>(similarityScore.ToString());
     }
 }
