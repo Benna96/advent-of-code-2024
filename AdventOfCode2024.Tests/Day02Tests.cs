@@ -23,19 +23,13 @@ public sealed class Day02Tests : BaseProblemTests<Day02>
         [1, 3, 6, 7, 9],
     ];
 
-    protected override string ExpectedPart1Solution => "TODO";
+    protected override string ExpectedPart1Solution => "2";
     protected override string ExpectedPart2Solution => "TODO";
 
     public override void InputIsParsedCorrectly()
     {
         var parsed = Day02.ParseInput(GivenInput);
         parsed.Should().BeEquivalentTo(ExpectedLevelReports);
-    }
-
-    [Fact(Skip = "TODO")]
-    public override Task Part1IsSolvedCorrectly()
-    {
-        return base.Part1IsSolvedCorrectly();
     }
     
     [Fact(Skip = "TODO")]

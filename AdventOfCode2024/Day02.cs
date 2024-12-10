@@ -28,7 +28,33 @@ public sealed class Day02 : BaseDay
 
     public override ValueTask<string> Solve_1()
     {
-        throw new NotImplementedException();
+        var safeReports = _levelReports.Where(report =>
+        {
+            bool? increasingOverall = null;
+            var isSafe = true;
+
+            for (int i = 1; i < report.Count; ++i)
+            {
+                var level = report[i];
+                var previousLevel = report[i - 1];
+
+                var increasing = level > previousLevel;
+                increasingOverall ??= increasing;
+                
+                var levelDiff = Math.Abs(level - previousLevel);
+
+                var sameIncrease = increasingOverall == increasing;
+                var levelDiffWithinAllowed = levelDiff is >= 1 and <= 3;
+                isSafe = sameIncrease && levelDiffWithinAllowed;
+
+                if (!isSafe)
+                    break;
+            }
+
+            return isSafe;
+        });
+        
+        return new ValueTask<string>(safeReports.Count().ToString());
     }
 
     public override ValueTask<string> Solve_2()
