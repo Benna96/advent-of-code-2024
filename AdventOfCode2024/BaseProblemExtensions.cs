@@ -15,6 +15,9 @@ public static class BaseProblemExtensions
         if (inputOverride is not null)
             return inputOverride;
         
-        return File.ReadAllText(self.InputFilePath);
+        if (File.Exists(self.InputFilePath))
+            return File.ReadAllText(self.InputFilePath);
+
+        return "";
     }
 }
