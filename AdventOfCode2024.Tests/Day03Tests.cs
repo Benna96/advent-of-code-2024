@@ -4,15 +4,18 @@ public sealed class Day03Tests : BaseProblemTests<Day03>
 {
     protected override Day03 GivenProblem { get; } = new(GivenInput);
 
-    private static string GivenInput => "TODO";
+    private static string GivenInput => "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))";
+
+    private static IReadOnlyList<string> ExpectedValidInstructions =>
+        ["mul(2,4)", "mul(5,5)", "mul(11,8)", "mul(8,5)"];
 
     protected override string ExpectedPart1Solution => "TODO";
     protected override string ExpectedPart2Solution => "TODO";
 
-    [Fact(Skip = "TODO")]
     public override void InputIsParsedCorrectly()
     {
-        throw new NotImplementedException();
+        var parsed = Day03.ParseInput(GivenInput);
+        parsed.Should().BeEquivalentTo(ExpectedValidInstructions);
     }
 
     [Fact(Skip = "TODO")]
