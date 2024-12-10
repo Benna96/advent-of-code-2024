@@ -12,7 +12,7 @@ public sealed class Day01 : BaseDay
 
     public Day01(string? customInput = null)
     {
-        var input = customInput ?? File.ReadAllText(InputFilePath);
+        var input = this.FetchInput(customInput);
         (_leftIds, _rightIds) = ParseInput(input);
     }
     
