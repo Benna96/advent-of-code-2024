@@ -9,19 +9,13 @@ public sealed class Day03Tests : BaseProblemTests<Day03>
     private static IReadOnlyList<string> ExpectedValidInstructions =>
         ["mul(2,4)", "mul(5,5)", "mul(11,8)", "mul(8,5)"];
 
-    protected override string ExpectedPart1Solution => "TODO";
+    protected override string ExpectedPart1Solution => "161";
     protected override string ExpectedPart2Solution => "TODO";
 
     public override void InputIsParsedCorrectly()
     {
         var parsed = Day03.ParseInput(GivenInput);
         parsed.Should().BeEquivalentTo(ExpectedValidInstructions);
-    }
-
-    [Fact(Skip = "TODO")]
-    public override Task Part1IsSolvedCorrectly()
-    {
-        return base.Part1IsSolvedCorrectly();
     }
     
     [Fact(Skip = "TODO")]

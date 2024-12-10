@@ -24,7 +24,14 @@ public sealed class Day03 : BaseDay
 
     public override ValueTask<string> Solve_1()
     {
-        throw new NotImplementedException();
+        var numRegex = new Regex(@"\d{1,3}");
+        var sum = _validInstructions.Sum(instruction =>
+        {
+            var nums = numRegex.Matches(instruction).Select(x => int.Parse(x.ToString()));
+            return nums.Aggregate(1, (current, num) => current * num);
+        });
+        
+        return new ValueTask<string>(sum.ToString());
     }
 
     public override ValueTask<string> Solve_2()
