@@ -10,9 +10,9 @@ public sealed class Day01 : BaseDay
     
     public Day01() : this(null) { }
 
-    public Day01(string? customInput = null)
+    public Day01(string? inputOverride = null)
     {
-        var input = this.FetchInput(customInput);
+        var input = this.FetchInput(inputOverride);
         (_leftIds, _rightIds) = ParseInput(input);
     }
     

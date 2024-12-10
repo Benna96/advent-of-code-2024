@@ -2,24 +2,24 @@ using FluentAssertions.Execution;
 
 namespace AdventOfCode2024.Tests;
 
-public class Day01Tests
+public sealed class Day01Tests
 {
-    private static Day01 GivenDay => new(GivenInput);
+    private Day01 GivenDay { get; } = new(GivenInput);
 
-    private static readonly string GivenInput = """
-                                               3   4
-                                               4   3
-                                               2   5
-                                               1   3
-                                               3   9
-                                               3   3
-                                               """;
+    private static string GivenInput => """
+                                        3   4
+                                        4   3
+                                        2   5
+                                        1   3
+                                        3   9
+                                        3   3
+                                        """;
 
-    private static readonly IReadOnlyList<int> ExpectedLeftIds = [3, 4, 2, 1, 3, 3];
-    private static readonly IReadOnlyList<int> ExpectedRightIds = [4, 3, 5, 3, 9, 3];
+    private static IReadOnlyList<int> ExpectedLeftIds => [3, 4, 2, 1, 3, 3];
+    private static IReadOnlyList<int> ExpectedRightIds => [4, 3, 5, 3, 9, 3];
 
-    private static readonly int ExpectedPart1Solution = 11;
-    private static readonly int ExpectedPart2Solution = 31;
+    private static int ExpectedPart1Solution => 11;
+    private static int ExpectedPart2Solution => 31;
 
     [Fact]
     public void InputIsParsedCorrectly()
