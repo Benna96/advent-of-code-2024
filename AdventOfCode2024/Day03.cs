@@ -64,18 +64,23 @@ public sealed class Day03 : BaseDay
 
     public override ValueTask<string> Solve_1()
     {
+        return new ValueTask<string>(SumMults(_validInstructions).ToString());
+    }
+
+    public override ValueTask<string> Solve_2()
+    {
+        return new ValueTask<string>(SumMults(_validInstructionsPart2).ToString());
+    }
+
+    private int SumMults(IReadOnlyList<string> instructions)
+    {
         var numRegex = new Regex(@"\d{1,3}");
-        var sum = _validInstructions.Sum(instruction =>
+        var sum = instructions.Sum(instruction =>
         {
             var nums = numRegex.Matches(instruction).Select(x => int.Parse(x.ToString()));
             return nums.Aggregate(1, (current, num) => current * num);
         });
         
-        return new ValueTask<string>(sum.ToString());
-    }
-
-    public override ValueTask<string> Solve_2()
-    {
-        throw new NotImplementedException();
+        return sum;
     }
 }

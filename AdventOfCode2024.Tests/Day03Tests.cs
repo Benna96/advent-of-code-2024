@@ -15,7 +15,7 @@ public sealed class Day03Tests : BaseProblemTests<Day03>
         ["mul(2,4)", "mul(8,5)"];
 
     protected override string ExpectedPart1Solution => "161";
-    protected override string ExpectedPart2Solution => "TODO";
+    protected override string ExpectedPart2Solution => "48";
 
     public override void InputIsParsedCorrectly()
     {
@@ -26,9 +26,14 @@ public sealed class Day03Tests : BaseProblemTests<Day03>
         parsed2.Should().BeEquivalentTo(ExpectedValidInstructionsPart2);
     }
     
-    [Fact(Skip = "TODO")]
-    public override Task Part2IsSolvedCorrectly()
+    /// <summary>
+    /// Need to override because uses different input,
+    /// base class only supports same obj for both
+    /// &amp; current impl has 1 input per obj
+    /// </summary>
+    public override async Task Part2IsSolvedCorrectly()
     {
-        return base.Part2IsSolvedCorrectly();
+        var solution = await new Day03(GivenInput2).Solve_2();
+        solution.Should().Be(ExpectedPart2Solution);
     }
 }
