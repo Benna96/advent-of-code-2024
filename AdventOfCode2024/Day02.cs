@@ -57,26 +57,20 @@ public sealed class Day02 : BaseDay
     private static bool IsSafe(IReadOnlyList<int> report)
     {
         bool? increasingOverall = null;
-        var isSafe = true;
-
-        for (int i = 1; i < report.Count; ++i)
+        
+        for (var i = 1; i < report.Count; ++i)
         {
-            var level = report[i];
-            var previousLevel = report[i - 1];
+            var diff = report[i] - report[i - 1];
+            
+            if (Math.Abs(diff) is < 1 or > 3)
+                return false;
 
-            var increasing = level > previousLevel;
+            var increasing = diff > 0;
             increasingOverall ??= increasing;
-                
-            var levelDiff = Math.Abs(level - previousLevel);
-
-            var sameIncrease = increasingOverall == increasing;
-            var levelDiffWithinAllowed = levelDiff is >= 1 and <= 3;
-            isSafe = sameIncrease && levelDiffWithinAllowed;
-
-            if (!isSafe)
-                break;
+            if (increasing != increasingOverall)
+                return false;
         }
 
-        return isSafe;
+        return true;
     }
 }
